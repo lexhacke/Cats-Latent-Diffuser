@@ -39,5 +39,4 @@
       By the way, can find me here:
       <br/>
       <a className='minilink' target="_blank" href="https://www.linkedin.com/in/lex-hackett-2b89612b3/"> LinkedIn </a> |
-      <a className='minilink' target="_blank" href="https://www.github.com/lexhacke"> Github </a> | 
       <a className='minilink' target="_blank" href="https://lex.hackett@hotmail.com"> Hotmail </a>
