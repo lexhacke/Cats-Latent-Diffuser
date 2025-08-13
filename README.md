@@ -14,6 +14,13 @@
       <li>Lastly, the U-net upsampling layer followed the same Conv2d filter counts, albeit reversed (each Layer consisting of a skip concatenation, followed by bilinear upsampling and 2 Residual Blocks).</li>
       <li>Finally, a Conv2d layer projects the 32x64x64 image back to the autoencoder's 4x64x64 latent space using a 4-filter convolution</li>
       </ol>.
+      <h2>Deployment</h2>
+      The application’s inference pipeline is deployed using a serverless, multi-service architecture that combines scalable model hosting with lightweight orchestration.
+       
+       The latent ddim u-net is containerized and served via a Hugging Face Inference Endpoint, backed by AWS-managed compute instances for on-demand scaling (my model running on Intel Sapphire Rapids 2 GB). The endpoint is batch-optimized to support parallelized image generation, enabling ~10 candidate samples per request without additional latency overhead.
+       An AWS Lambda function acts as the stateless orchestration layer, handling: secure API requests from the client, invocation of the Hugging Face endpoint, CLIP-based re-ranking of generated images to select the highest-scoring match to the prompt. This design isolates model execution from request orchestration, ensuring fault isolation and cost-efficient scaling. Lambda’s event-driven model keeps compute idle until triggered, while the endpoint only runs during active generation requests.
+       The frontend is built with Vite + React and delivered via Vercel.
+       This architecture is production-grade: fully serverless, globally distributed, parallelized at inference time, and leveraging modern ML deployment practices without relying on monolithic frameworks.
     </p>
     <br/>
     <h1 className='subtitle'>What did I change?</h1>
