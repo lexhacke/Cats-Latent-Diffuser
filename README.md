@@ -6,12 +6,12 @@
       The model architecture is a pretty vanilla U-Net, similar to early 1.X Stable Diffusion models, albeit much smaller.
       The exact model architecture is as follows:
       <ol>
-      <li>Firstly, I encoded the timestep using the standard sinusoidal embedding from Vaswani et al. and expanded the resulting 1×512 vector into a 512×32×32 tensor by tiling across spatial dimensions. This tensor was then concatenated to the latent representation, so each latent pixel had a direct encoding of the timestep information.</li>
-      <li>I then passed the latent image through a conv2d layer that reduced the 516x32x32 dimensional latent to a 32x32x32 latent</li>
+      <li>Firstly, I encoded the timestep using the standard sinusoidal embedding from Vaswani et al. and expanded the resulting 1×512 vector into a 512×64×64 tensor by tiling across spatial dimensions. This tensor was then concatenated to the latent representation, so each latent pixel had a direct encoding of the timestep information.</li>
+      <li>I then passed the latent image through a conv2d layer that reduced the 516x64x64 dimensional latent to a 32x64x64 latent</li>
       <li>I then passed the image through a U-net ResNet-style downsampling path (each layer consisting of 2 residual blocks and a strided convolution), the Conv2d filter counts were as follows: 32, 64, 256, 512. All intermediate resolutions were saved in a skip connection stack</li>
       <li>The bottleneck consisted of a simple ResNet-style Residual Block, followed by Spatial Self-Attention, and another Residual Block</li>
       <li>Lastly, the U-net upsampling layer followed the same Conv2d filter counts, albeit reversed (each Layer consisting of a skip concatenation, followed by bilinear upsampling and 2 Residual Blocks).</li>
-      <li>Finally, a Conv2d layer projects the 32x32x32 image back to the autoencoder's latent space using a 4-filter convolution</li>
+      <li>Finally, a Conv2d layer projects the 32x64x64 image back to the autoencoder's 4x64x64 latent space using a 4-filter convolution</li>
       </ol>
       While the images you see are 512x512, the model was actually trained on 64x64x4 latent images using the 
       <a className='minilink' target="_blank" href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5"> Stable Diffusion 1.5 Variational Autoencoder</a>.
