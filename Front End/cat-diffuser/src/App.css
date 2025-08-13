@@ -8,8 +8,8 @@
   @apply text-white text-4xl font-bold text-center mb-4 p-4;
 }
 
-.yapping {
-  @apply text-white text-lg text-center mb-2;
+.subtitle {
+  @apply text-white text-2xl font-bold text-center mb-4 p-4;
 }
 
 .cat-box {
@@ -23,5 +23,21 @@
 }
 
 .cool_button {
-  @apply bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 transition duration-300 ease-in-out;
+  @apply bg-purple-400 text-white font-bold py-2 px-4 rounded hover:bg-purple-700 transition duration-100 ease-in-out;
+}
+
+.cool_button_active {
+  @apply bg-purple-800 text-white font-bold py-2 px-4 rounded;
+}
+
+p {
+  @apply text-white text-lg px-30 py-5;
+}
+
+.minilink {
+  @apply text-blue-500;
+}
+
+.kitties {
+  @apply h-2/5 w-2/5 mx-auto;
 }
