@@ -4,7 +4,7 @@
       <a className="minilink" target="_blank" href='https://www.kaggle.com/datasets/crawford/cat-dataset'> Crawford Cats</a> dataset.
       The model takes generates a completely new cat picture from scratch every time you click generate.
       The model architecture is a pretty vanilla U-Net, similar to early 1.X Stable Diffusion models, albeit much smaller.
-      The exact model architecture is as follows:
+      <h2>Model Architecture</h2>
       <ol>
       <li>Firstly, I encoded the timestep using the standard sinusoidal embedding from Vaswani et al. and expanded the resulting 1×512 vector into a 512×64×64 tensor by tiling across spatial dimensions. This tensor was then concatenated to the latent representation, so each latent pixel had a direct encoding of the timestep information.</li>
       <li>I then passed the latent image through a conv2d layer that reduced the 516x64x64 dimensional latent to a 32x64x64 latent</li>
