@@ -1,7 +1,8 @@
 <h1>Cat Latent Diffusion</h1>
 
- Cat Diffuser is my custom deployment of a Latent DDIM diffusion model trained exclusively on the 
+ Cat Diffuser is my custom deployment of a Latent DDIM diffusion model trained exclusively on the autoencoded images from the
       <a className="minilink" target="_blank" href='https://www.kaggle.com/datasets/crawford/cat-dataset'> Crawford Cats</a> dataset.
+      My autoencoder of choice was<a className='minilink' target="_blank" href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5"> Stable Diffusion 1.5's Variational Autoencoder</a>.
       The model takes generates a completely new cat picture from scratch every time you click generate.
       The model architecture is a pretty vanilla U-Net, similar to early 1.X Stable Diffusion models, albeit much smaller.
       <h2>Model Architecture</h2>
@@ -12,9 +13,7 @@
       <li>The bottleneck consisted of a simple ResNet-style Residual Block, followed by Spatial Self-Attention, and another Residual Block</li>
       <li>Lastly, the U-net upsampling layer followed the same Conv2d filter counts, albeit reversed (each Layer consisting of a skip concatenation, followed by bilinear upsampling and 2 Residual Blocks).</li>
       <li>Finally, a Conv2d layer projects the 32x64x64 image back to the autoencoder's 4x64x64 latent space using a 4-filter convolution</li>
-      </ol>
-      While the images you see are 512x512, the model was actually trained on 64x64x4 latent images using the 
-      <a className='minilink' target="_blank" href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5"> Stable Diffusion 1.5 Variational Autoencoder</a>.
+      </ol>.
     </p>
     <br/>
     <h1 className='subtitle'>What did I change?</h1>
