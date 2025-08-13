@@ -32,7 +32,7 @@ function Home() {
         body: JSON.stringify({"key": "loveandlighttv"})
       });
       if (!response.ok) {
-        throw new Error('Goddamn it');
+        throw new Error('Please wait ~ 1 minute for the endpoint to wake up. If it has been more than 5 minutes, the endpoint is probably down. Sorry!');
       }
       const rawBytes = await response.json();
       const bytes = atob(rawBytes);
@@ -103,7 +103,7 @@ function About() {
       The model architecture is a pretty vanilla U-Net, similar to early 1.X Stable Diffusion models, albeit much smaller. It consists of a ResNet-style downsampling path, a bottleneck with spatial attention, and a skip-connected upsampling path
       where the image is progressively refined through a series of Residual Blocks (where equiresolution blocks are connected via skip connections).
       While the images you see are 512x512, the model was actually trained on 64x64x4 latent images using the 
-      <a className='minilink' target="_blank" href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5"> Stable Diffusion 1.5 Variation Autoencoder</a>.
+      <a className='minilink' target="_blank" href="https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5"> Stable Diffusion 1.5 Variational Autoencoder</a>.
       Why did I use latent diffusion, you ask? Well, firstly, it’s incredibly less resource-intensive to train a model on 64×64×4 inputs 
       than on 512×512×3 inputs. Period. That’s about a 4,800% reduction in raw input size.  Furthermore, autoencoders—especially those trained with 
       adversarial losses, think PatchGAN—tend to “hallucinate” fine textures and features that might have been lost if we trained a diffusion model 
