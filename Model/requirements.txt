@@ -1,0 +1,8 @@
+torch
+transformers
+diffusers
+accelerate
+safetensors
+Pillow
+opencv-python-headless
+numpy
